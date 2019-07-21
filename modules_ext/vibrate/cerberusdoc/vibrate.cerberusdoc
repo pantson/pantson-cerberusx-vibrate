@@ -1,0 +1,12 @@
+
+# Module vibrate
+
+Vibrate brings an easy way to vibrate an Android device
+
+Simply import vibrate at the top of your project and use VibrateDevice() function
+
+
+# Function VibrateDevice(milliseconds:Int)
+
+Vibrate the device
+
