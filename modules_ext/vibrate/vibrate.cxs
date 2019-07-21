@@ -1,0 +1,48 @@
+#rem
+######################################################################################################################################
+
+Vibrate module example for Android
+
+######################################################################################################################################
+
+2019 @richpantson
+comments on cerberus-x.com 
+
+######################################################################################################################################
+#end
+
+Strict
+
+#If TARGET="android"	
+	Import "native/vibrate.android.java"
+	#ANDROID_MANIFEST_MAIN+="<uses-permission android:name=~qandroid.permission.VIBRATE~q />"
+
+#rem
+	TO be fixed in wrapper for API29
+	Const VIBRATE_DEFAULT:=0
+	Const VIBRATE_CLICK:=1
+	Const VIBRATE_DOUBLE_CLICK:=2
+	Const VIBRATE_HEAVY_CLICK:=3
+	Const VIBRATE_TICK:=4
+#end
+	
+	Global global_vibrate:cVibrate
+	Function VibrateDevice:Void(millisecs:Int)
+		If global_vibrate = Null Then global_vibrate = New cVibrate()
+		global_vibrate.vibrate(millisecs,0)
+	End
+		
+	Private
+
+	Extern
+	Class cVibrate Extends Null="Vibrate"	
+		Method vibrate:Void(millisecs:Int,type:int)
+	End
+
+#Else
+	Function VibrateDevice:Void(millisecs:Int)
+#If CONFIG="debug"
+		Print "Vibrate not supported on this TARGET"
+#End
+	End
+#End

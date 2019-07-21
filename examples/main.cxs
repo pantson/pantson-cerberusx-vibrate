@@ -1,0 +1,44 @@
+#rem
+######################################################################################################################################
+
+Vibrate example for Android
+
+######################################################################################################################################
+
+2019 @richpantson
+comments on cerberus-x.com 
+
+######################################################################################################################################
+#end
+Strict
+
+Import mojo2
+Import vibrate
+
+Class myClass Extends App
+	Field canvas:Canvas
+
+	Method OnCreate:Int()
+		SetUpdateRate(60)
+		canvas = New Canvas
+		Return 0
+	End
+
+	Method OnUpdate:Int()
+		If MouseHit(MOUSE_LEFT) Then VibrateDevice(500)
+		Return 0
+	End
+	
+	Method OnRender:Int()
+		canvas.Clear (0,0.5,0)	
+		canvas.DrawText( String("Cerberus X~nTouch to vibrate").Split("~n")),DeviceWidth()/2,DeviceHeight()/2,0.5,0.5
+		canvas.Flush
+
+		Return 0
+	End
+End
+
+Function Main:Int()
+	New myClass		
+	Return 0
+End
